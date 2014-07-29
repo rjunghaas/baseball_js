@@ -1,0 +1,14 @@
+{
+	"name" : "baseball_js",
+	"description" : "Asynchronous full-stack app using Node.js and MongoDB.",
+	"version" : "0.0.1",
+	"private" : true,
+	"dependencies" : {
+		"express" : "4.x",
+		"async" : "0.1.x",
+		"request": "*",
+		"cheerio": "*",
+		"mongoose": "3.8.x",
+		"body-parser": "latest"
+	}
+}
