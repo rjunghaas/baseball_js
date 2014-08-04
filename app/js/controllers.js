@@ -16,6 +16,7 @@ controller('baseballController', function($scope, $http) {
 		})
 		.success(function(res) {
 			$scope.formData.name = res.data.name;
+			$scope.formData.id = res.data.id
 		});
 	}
 

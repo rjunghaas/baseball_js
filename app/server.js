@@ -24,7 +24,6 @@ app.get('/players/index', function(req, res){
 
 // Handles post request for search request
 app.post('/players/search', function(req,res) {
-	console.log(req.body.search_str);
 	var search_str = req.body.search_str;
 	db.playerSearch(null, search_str, res);
 });
@@ -34,16 +33,16 @@ app.post('/players/scrape', function(req,res){
 	var start_date_str = String(req.body.start_date);
 	var end_date_str = String(req.body.end_date);
 	var player = req.body.name;
+	var id = req.body.id;
 	
 	var start_date = helpers.parseDate(start_date_str);
 	var end_date = helpers.parseDate(end_date_str);
 	
-	var url = "http://www.baseballmusings.com/cgi-bin/PlayerInfo.py?StartDate=" + start_date + "&EndDate=" + end_date + "&GameType=all&PlayedFor=0&PlayedVs=0&Park=0&PlayerID=13110";
+	var url = "http://www.baseballmusings.com/cgi-bin/PlayerInfo.py?StartDate=" + start_date + "&EndDate=" + end_date + "&GameType=all&PlayedFor=0&PlayedVs=0&Park=0&PlayerID=" + id;
 	var self = res; //preserve pointer to res
 	
 	request(url, function(err, res, html){
 		if(err) return console.error(err);
-		var result = [];
 		
 		result = helpers.parsePage(html);
 		vorp = helpers.calcVorp(result);
@@ -57,8 +56,8 @@ app.post('/players/scrape', function(req,res){
 	
 		self.writeHead(200, {"Content-Type": "application/json"});
    	 	var output = { error: null, data: json_result };
-   	 	self.end(JSON.stringify(output) + "\n");	
-	});			
+   	 	self.end(JSON.stringify(output) + "\n");
+	});	
 });
 
 // Redirect function to load single page

@@ -39,7 +39,7 @@ exports.parsePage = function(html) {
 	slg = parseFloat($(summaryRow).children().slice(2,3).text());
 	ops = oba + slg;
 	result.push(ba, oba, slg, ops);
-		
+	
 	return result;
 }
 
@@ -63,7 +63,7 @@ exports.calcVorp = function(statsArray) {
 	gdp = statsArray[13];
 		
 	totalOuts = ab - hits + cs + sh + sf + gdp;
-	totalSeasons = (parseFloat(statsArray[0])) / 150;
+	totalSeasons = (parseFloat(statsArray[0])) / 162;
 	adjustedOuts = (totalOuts / totalSeasons);
 	runsProduced = (lgRunsPerOut * adjustedOuts);
 		
